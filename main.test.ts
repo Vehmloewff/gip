@@ -19,6 +19,7 @@ Deno.test(`gip clones ${testRepo}`, async () => {
 
 	await setup(path)
 	await dtils.shIgnore(command, { cwd: path, env: Deno.env.toObject() })
+	console.log(await dtils.recursiveReadDir('fixture'))
 
 	const newReadme = await dtils.readText(`${path}/readme.md`)
 	asserts.assert(newReadme.includes(testRepoReadmeText), `Readme is not new:\n\n${newReadme}`)
