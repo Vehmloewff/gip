@@ -19,9 +19,8 @@ Deno.test(`gip clones ${testRepo}`, async () => {
 
 	await setup(path)
 	await dtils.shIgnore(command, { cwd: path, env: Deno.env.toObject() })
-	console.log(await dtils.recursiveReadDir('fixture'))
 
-	const newReadme = await dtils.readText(`${path}/readme.md`)
+	const newReadme = await dtils.readText(`${path}/README.md`)
 	asserts.assert(newReadme.includes(testRepoReadmeText), `Readme is not new:\n\n${newReadme}`)
 
 	await clean(path)
@@ -33,11 +32,11 @@ Deno.test('gip doesn\'t overwrite the existing files with the --no flag', async 
 	// --no
 	{
 		await setup(path)
-		await dtils.writeText(`${path}/readme.md`, oldReadme)
+		await dtils.writeText(`${path}/README.md`, oldReadme)
 
 		await dtils.shIgnore(`${command} --no`, { cwd: path, env: Deno.env.toObject() })
 
-		const newReadme = await dtils.readText(`${path}/readme.md`)
+		const newReadme = await dtils.readText(`${path}/README.md`)
 
 		asserts.assertEquals(newReadme, oldReadme)
 	}
@@ -45,11 +44,11 @@ Deno.test('gip doesn\'t overwrite the existing files with the --no flag', async 
 	// -n (shorthand)
 	{
 		await setup(path)
-		await dtils.writeText(`${path}/readme.md`, oldReadme)
+		await dtils.writeText(`${path}/README.md`, oldReadme)
 
 		await dtils.shIgnore(`${command} -n`, { cwd: path, env: Deno.env.toObject() })
 
-		const newReadme = await dtils.readText(`${path}/readme.md`)
+		const newReadme = await dtils.readText(`${path}/README.md`)
 
 		asserts.assertEquals(newReadme, oldReadme)
 	}
@@ -63,11 +62,11 @@ Deno.test('gip overwrites existing files with the --yes flag', async () => {
 	// --yes
 	{
 		await setup(path)
-		await dtils.writeText(`${path}/readme.md`, oldReadme)
+		await dtils.writeText(`${path}/README.md`, oldReadme)
 
 		await dtils.shIgnore(`${command} --yes`, { cwd: path, env: Deno.env.toObject() })
 
-		const newReadme = await dtils.readText(`${path}/readme.md`)
+		const newReadme = await dtils.readText(`${path}/README.md`)
 
 		asserts.assert(newReadme.includes(testRepoReadmeText), `Readme is not new:\n\n${newReadme}`)
 	}
@@ -75,11 +74,11 @@ Deno.test('gip overwrites existing files with the --yes flag', async () => {
 	// -y (shorthand)
 	{
 		await setup(path)
-		await dtils.writeText(`${path}/readme.md`, oldReadme)
+		await dtils.writeText(`${path}/README.md`, oldReadme)
 
 		await dtils.shIgnore(`${command} -y`, { cwd: path, env: Deno.env.toObject() })
 
-		const newReadme = await dtils.readText(`${path}/readme.md`)
+		const newReadme = await dtils.readText(`${path}/README.md`)
 
 		asserts.assert(newReadme.includes(testRepoReadmeText), `Readme is not new:\n\n${newReadme}`)
 	}
