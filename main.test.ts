@@ -21,7 +21,7 @@ Deno.test(`gip clones ${testRepo}`, async () => {
 	await dtils.shIgnore(command, { cwd: path, env: Deno.env.toObject() })
 
 	const newReadme = await dtils.readText(`${path}/readme.md`)
-	asserts.assert(newReadme.includes(testRepoReadmeText))
+	asserts.assert(newReadme.includes(testRepoReadmeText), `Readme is not new:\n\n${newReadme}`)
 
 	await clean(path)
 })
@@ -68,7 +68,7 @@ Deno.test('gip overwrites existing files with the --yes flag', async () => {
 
 		const newReadme = await dtils.readText(`${path}/readme.md`)
 
-		asserts.assert(newReadme.includes(testRepoReadmeText))
+		asserts.assert(newReadme.includes(testRepoReadmeText), `Readme is not new:\n\n${newReadme}`)
 	}
 
 	// -y (shorthand)
@@ -80,7 +80,7 @@ Deno.test('gip overwrites existing files with the --yes flag', async () => {
 
 		const newReadme = await dtils.readText(`${path}/readme.md`)
 
-		asserts.assert(newReadme.includes(testRepoReadmeText))
+		asserts.assert(newReadme.includes(testRepoReadmeText), `Readme is not new:\n\n${newReadme}`)
 	}
 
 	await clean(path)
