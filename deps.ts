@@ -1,0 +1,5 @@
+export * as dtils from 'https://deno.land/x/dtils@2.0.0/mod.ts'
+export * as pathUtils from 'https://deno.land/std@0.190.0/path/mod.ts'
+export * as colors from 'https://deno.land/std@0.190.0/fmt/colors.ts'
+export * as asserts from 'https://deno.land/std@0.190.0/testing/asserts.ts'
+export * as flags from 'https://deno.land/std@0.190.0/flags/mod.ts'
