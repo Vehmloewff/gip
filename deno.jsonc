@@ -4,5 +4,10 @@
 		"semiColons": false,
 		"singleQuote": true,
 		"useTabs": true
+	},
+	"lint": {
+		"rules": {
+			"include": ["no-external-import", "explicit-module-boundary-types"]
+		}
 	}
 }
